@@ -12,9 +12,15 @@ import 'styles/border.css'
 // npm install fastclick --save 说明这个包在生产和开发都要使用，把它保存在package.json的依赖中。（是node相关的知识）
 // fastclick 用于解决在一些移动端浏览器 click事件 300ms 延迟的问题 https://cloud.tencent.com/developer/article/1668429
 import 'styles/iconfont.css'
+// 使用github上一个轮播图插件，快速构建轮播图
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+// 版本问题不要按官方文档那样写，在issue里有人讨论这个问题
+import 'swiper/swiper-bundle.css'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body) //第二步使用它的attach方法
+
+Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({
