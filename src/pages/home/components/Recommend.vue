@@ -21,23 +21,12 @@
         name: 'HomeRecommend',
         data() {
             return {
-                recommendList: [{
-                id:'0001',
-                imgUrl: 'https://imgs.qunarzz.com/sight/p0/2211/6e/6e7bb7875e998fa4a3.water.jpg_200x200_c82378d6.jpg',
-                title:"dddddd",
-                desc:"rrrrrrr",
-            },
-            {
-                id:'0002',
-                imgUrl: 'http://img1.qunarzz.com/piao/fusion/1802/42/7c92b9a381e46402.jpg_640x200_1cdce2a4.jpg',
-                title:"dddddd",
-                desc:"rrrrrrr",
-
-
-            }]
                 
-            };
+            }
         },
+        props: {
+            recommendList:Array
+        }
     }
 </script>
 <style lang="stylus" scoped>

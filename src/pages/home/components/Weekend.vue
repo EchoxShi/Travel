@@ -2,7 +2,7 @@
     <div>
         <div class="title">周末去哪儿</div>
         <ul>
-            <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+            <li class="item border-bottom" v-for="item of weekendList" :key="item.id">
                 <div class="item-img-wrapper">
                     <img class="item-img" :src="item.imgUrl"/>
                 </div>
@@ -20,21 +20,12 @@
         name: 'HomeWeekend',
         data() {
             return {
-                recommendList: [{
-                id:'0001',
-                imgUrl: '	https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg',
-                title:"dddddd",
-                desc:"rrrrrrr",
-            },
-            {
-                id:'0002',
-                imgUrl: '	https://imgs.qunarzz.com/sight/source/1510/6e/1ea71e2f04e.jpg_r_640x214_aa6f091d.jpg',
-                title:"dddddd",
-                desc:"rrrrrrr",
-            }]
                 
-            };
+            }
         },
+        props: {
+            weekendList: Array
+        }
     }
 </script>
 <style lang="stylus" scoped>
@@ -46,7 +37,7 @@
     .item-img-wrapper
         overflow: hidden
         height: 0
-        padding-bottom: 33.9%
+        padding-bottom: 37.09%
         .item-img
         /**这个width写在外层和图片上的效果可是不一样的。 */
             width: 100%

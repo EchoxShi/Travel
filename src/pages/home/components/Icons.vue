@@ -1,6 +1,6 @@
 <template>
     <div class="icons">
-        <swiper>
+        <swiper :options="swiperOption">
             <swiper-slide v-for="(page,index) of pages" :key="index"> 
                 <div class="icon" v-for="item of page" :key="item.id"> 
                     <div class="icon-img">
@@ -21,52 +21,14 @@ export default ({
     name: 'HomeIcons',
     data () {
         return {
-            iconList: [{
-                id: '0001',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0002',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0003',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0004',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0005',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0006',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0007',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0008',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            },
-            {
-                id: '0009',
-                imgUrl: "https://s.qunarzz.com/homenode/images/touchheader/piao.png",
-                desc: '景点门票'
-            }]
+            swiperOption: {
+                autoPlay: false
+            }
         }
+            
+    },
+    props: {
+        iconList: Array
     },
     computed: {
         pages () {
