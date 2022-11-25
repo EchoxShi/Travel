@@ -14,20 +14,21 @@ import HomeIcon from './components/Icons.vue'
 import HomeRecommend from './components/Recommend.vue'
 import HomeWeekend from './components/Weekend.vue'
 import axios from 'axios'
+import {mapState} from 'vuex'
 
 
 export default { 
     name: 'Home',
     components: {
         HomeHeader,
-        HomeSwiper,
+        HomeSwiper, 
         HomeIcon,
         HomeRecommend,
         HomeWeekend,
     },
     data () {
         return {
-            
+            lastCity: '',
             swiperList: [],
             iconList: [],
             recommendList: [],
@@ -35,9 +36,12 @@ export default {
 
         }
     },
+    computed: {
+        ...mapState(['city'])
+    },
     methods: {
         getHomeInfo () {
-            axios.get('/api/index.json')
+            axios.get('/api/index.json?city=' + this.city)
             .then(this.getHomeInfoSucc)
         },
         getHomeInfoSucc (res) {
@@ -53,10 +57,21 @@ export default {
 
 
             }
-        }
+        } 
     },
     mounted () {
+        console.log("mounted")
+        this.lastCity = this.city
         this.getHomeInfo()
+    },
+    // 在使用keep-alive 时有这个生命周期函数
+    // 页面重新被显示的时候触发
+    activated () {
+        if(this.lastCity !== this.city){
+            this.lastCity = this.city
+            this.getHomeInfo()
+        }
+        console.log("activated")
     },
     
 }
