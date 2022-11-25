@@ -4,7 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import fastclick from 'fastclick' //第一步引入
-
+// 使用Vuex
+import store from './store/index.js'
 // 清除原始样式,注意这里的styles 是别名
 import 'styles/reset.css'
 // 解决在高分辨率屏幕上，1px显示成2px的问题
@@ -26,6 +27,7 @@ Vue.use(VueAwesomeSwiper)
 new Vue({
   el: '#app',
   router,
+  store,//把store传给Vue实例
   components: { App },
   template: '<App/>'
 })
