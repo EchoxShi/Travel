@@ -20,5 +20,8 @@ export default new Router({
     name: 'Detail',
     component: Detail
   }],
-  
+  // 解决页面一起滚动的问题，sroll 的一个问题
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
