@@ -1,77 +1,87 @@
 <template>
-<div>
-    <div class="banner" @click="handleBannerclick">
-    <div class="banner-img">
-        <img  src="http://img1.qunarzz.com/sight/p0/2005/ad/adc09bb2c41b9f71a3.water.jpg_600x330_41f1059c.jpg"/>
+    <div>
+        <router-link tag="div" to="/" class="header-abs" v-show="showABS">
+            <div class="iconfont header-abs-icon">&#xe624;</div>
+        </router-link >
+        <div class="header-fixed" v-show="!showABS" :style="opacityStyle">
+            <div class="iconfont header-fixed-back">&#xe624;</div>
+            景点详情
+        </div>
     </div>
-    <div class="banner-info">
-        <div class="banner-title">大连圣亚海洋世界(AAAA景区)</div>
-        <div class="banner-num"><span class="iconfont banner-icon">&#xe600;</span>39</div>
-    </div>
-    </div>
-    <common-gallary :imgs='imgs' v-show="showGallary" @close="handleBannerClose" ></common-gallary>
-</div>
-
- 
 </template>
 
 <script>
-import CommonGallary from 'common/gallary/Gallary.vue'
 export default {
-    name: "Banner",
-    components: {
-        CommonGallary,
-    },
-    data () {
-        return {
-            showGallary:false,
-            imgs: ['//qimgs.qunarzz.com/piao_qsight_provider_piao_qsight_web/100f0y000000ls13t3FB8.jpg_r_800x800_f89ae9bd.jpg','//qimgs.qunarzz.com/piao_qsight_provider_piao_qsight_web/100g0y000000lsp6y3D32.jpg_r_800x800_30b12a68.jpg']
-        }
-    },
-    methods: {
-        handleBannerclick(){
-            this.showGallary = true
-        },
-        handleBannerClose(){
-            this.showGallary = false
+    name: 'DetailBanner',
 
+    data() {
+        return {
+            showABS: true,
+            opacityStyle: 0
+        };
+    },
+
+    mounted() {
+        
+    },
+
+    methods: {
+        handleScroll() {
+            // console.log(document.documentElement.scrollTop)
+            const top = document.documentElement.scrollTop
+            if(top > 60 ){
+                let  opacity = top/140
+                opacity = opacity > 1 ? 1 : opacity
+                this.opacityStyle = {opacity}
+                this.showABS = false
+            }else {
+                this.showABS = true
+            }
         }
-       
+    },
+    activated () {
+        window.addEventListener("scroll",this.handleScroll)
     }
 }
 </script>
 
 <style lang="stylus" scoped>
-.banner
-    position: relative
-    overflow: hidden
-    height: 0 
-    padding-bottom: 55%
-    color: #fff
-    .banner-img
-        width:100%
-    .banner-info
-        display: flex
+@import '~styles/varibles.styl'
+    .header-abs
+        z-index:1
         position: absolute
-        bottom: 0
-        left: 0
+        background-color: rgba(0,0,0,0.8)
+        width: .8rem
+        height: .8rem
+        line-height: .8rem
+        border-radius: .4rem
+        left : .2rem
+        top: .2rem
+        text-align: center
+        .header-abs-icon
+            font-size: .4rem
+            color: #fff
+    .header-fixed
+        z-index:1
+        position: fixed
+        overflow: hidden
+        top: 0
         right: 0
-        line-height: .6rem
-        background-image: linear-gradient(top,rgba(0,0,0,0),rgba(0,0,0,0.8))
-        .banner-title
-            flex:1
-            font-size: .32rem
-            padding: 0 .2rem
-        .banner-num
-            height: .32rem
-            line-height: .32rem
-            margin-top: .14rem
-            padding: 0 .4rem
-            background-color: rgba(0,0,0,0.8)
-            border-radius: .1rem
-            font-size: .24rem
-            .banner-icon
-                font-size:.24rem
+        left: 0
+        height: $headerHeight
+        line-height: $headerHeight
+        text-align: center
+        color: #fff
+        background: $bgColor
+        font-size: .32rem
+        .header-fixed-back
+            position: absolute
+            top:0
+            left:0
+            width: .64rem
+            text-align: center
+            font-size: .4rem
+            color: #fff
 
 
 </style>
