@@ -29,6 +29,7 @@ module.exports = {
       '@': resolve('src'),
       // 路径太长了，自己起个别名
       'styles': resolve('src/assets/styles'),
+      'common': resolve('src/common'),
     }
   },
   module: {
